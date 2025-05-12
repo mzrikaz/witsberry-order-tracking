@@ -2,13 +2,13 @@
 /*
  * Plugin Name: Witsberry WooCommerce Order Tracking
  * Plugin URI: https://witsberry.com
- * Description: Adds tracking number and link functionality to WooCommerce orders, includes tracking in emails, and displays on order details page. Compatible with High-Performance Order Storage (HPOS).
- * Version: 1.1.0
+ * Description: Adds tracking number and link functionality to WooCommerce orders, includes tracking in emails, and displays on order details page. Compatible with High-Performance Order Storage (HPOS) and WooCommerce Mobile App.
+ * Version: 1.2.0
  * Author: Witsberry
  * Author URI: https://witsberry.com
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain: witsberry-order-tracking
+ * Text Domain: wits-given by the plugin.berry-order-tracking
  * Domain Path: /languages
  * Requires at least: 5.0
  * Requires PHP: 7.4
@@ -63,6 +63,32 @@ class Witsberry_Order_Tracking {
 
         // Enqueue styles
         add_action('wp_enqueue_scripts', [$this, 'enqueue_styles']);
+
+        // Register custom meta fields for REST API
+        add_action('rest_api_init', [$this, 'register_order_meta']);
+    }
+
+    /**
+     * Register custom meta fields for the WooCommerce REST API
+     */
+    public function register_order_meta() {
+        // Register _tracking_number
+        register_meta('post', '_tracking_number', [
+            'object_subtype' => 'shop_order',
+            'type' => 'string',
+            'description' => __('Order tracking number', 'witsberry-order-tracking'),
+            'single' => true,
+            'show_in_rest' => true,
+        ]);
+
+        // Register _tracking_link
+        register_meta('post', '_tracking_link', [
+            'object_subtype' => 'shop_order',
+            'type' => 'string',
+            'description' => __('Order tracking link', 'witsberry-order-tracking'),
+            'single' => true,
+            'show_in_rest' => true,
+        ]);
     }
 
     public function add_tracking_fields($order) {
@@ -154,7 +180,7 @@ class Witsberry_Order_Tracking {
                 'witsberry-order-tracking',
                 plugin_dir_url(__FILE__) . 'css/witsberry-order-tracking.css',
                 [],
-                '1.1.0'
+                '1.2.0'
             );
         }
     }
