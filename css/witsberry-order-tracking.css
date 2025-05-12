@@ -1,0 +1,55 @@
+/* Mobile-first design */
+.witsberry-tracking-info {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.witsberry-tracking-info h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+}
+
+.witsberry-tracking-info p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.witsberry-tracking-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #0071a1;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+    margin-top: 0.5rem;
+}
+
+.witsberry-tracking-link:hover {
+    background: #005f87;
+}
+
+/* Medium screens */
+@media (min-width: 768px) {witsberry-order-tracking.css
+    .witsberry-tracking-info {
+        padding: 1.5rem;
+    }
+
+    .witsberry-tracking-info h2 {
+        font-size: 1.5rem;
+    }
+
+    .witsberry-tracking-info p {
+        font-size: 1.1rem;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1024px) {
+    .witsberry-tracking-info {
+        max-width: 600px;
+        margin: 1.5rem auto;
+    }
+}
